@@ -2,7 +2,7 @@
 Effect classes for FastLED
 
 ## Function List
-Shift(seconds, distance) - Moves "distance" in "seconds" once
+Shift(seconds, distance) - Moves "distance" in "seconds" once\n
 Scan(seconds, distance) - Continuously moves "distance" in "seconds"
 Phase(seconds, r, g, b) - Increments RGB channels by "r/g/b" every "seconds"
 Bounce(seconds, distance) - Moves "distance" in "seconds" and returns repeatedly
