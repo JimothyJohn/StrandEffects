@@ -168,7 +168,7 @@ void Segment::Pulse(float sTime, uint8_t intensity) {
 }
 
 // Brighten segment by intensity level
-void Segment::Brighten(float sTime, uint8_t intensity, bool repeat=false) {
+void Segment::Brighten(float sTime, uint8_t intensity, bool repeat) {
 	int dir = Segment::StepCalc(sTime, intensity, &_cstpTime);
 	// If enough time has elapsed
 	if(ClockCheck(&_cClock, _cstpTime)) {
@@ -195,7 +195,7 @@ void Segment::BrightenTo(float sTime, uint8_t intensity) {
 }
 
 // Dim segment by intensity level
-void Segment::Dim(float sTime, uint8_t intensity, bool repeat=false) {
+void Segment::Dim(float sTime, uint8_t intensity, bool repeat) {
 	int dir = Segment::StepCalc(sTime, intensity, &_cstpTime);
 	// If enough time has elapsed
 	if(ClockCheck(&_cClock, _stpTime)) {
@@ -238,7 +238,7 @@ void Segment::Saturate(float sTime, uint8_t intensity) {
 }
 
 // Move continuosly back and forth over a distance in dir increments
-void Segment::RainbowCycle(float sTime, uint8_t hue_start=0, uint8_t hue_end=255) {
+void Segment::RainbowCycle(float sTime, uint8_t hue_start, uint8_t hue_end) {
 	int dir = Segment::StepCalc(sTime, (hue_end-hue_start), &_cstpTime);
 	// If enough time has elapsed 
 	if(ClockCheck(&_cClock, _stpTime)) {
@@ -277,7 +277,7 @@ bool ClockCheck(long *cur_clock, uint16_t stp) {
 }
 
 // Resets channel if at limit, defaults to 8-bit
-uint16_t limitreset(int dir, uint16_t value, int low=0, int high=255) {
+uint16_t limitreset(int dir, uint16_t value, int low, int high) {
 	if((value+dir)>high) {
 		return low; // reset
 	} else if((value+dir)<low) {
@@ -288,7 +288,7 @@ uint16_t limitreset(int dir, uint16_t value, int low=0, int high=255) {
 }
 
 // Clips channel if at limit, defaults to 8-bit
-uint16_t limitcap(int dir, uint16_t value, int low=0, int high=255) {
+uint16_t limitcap(int dir, uint16_t value, int low, int high) {
 	if((value+dir)>high) {
 		return high; // reset
 	} else if((value+dir)<low) {
